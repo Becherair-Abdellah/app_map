@@ -1,7 +1,7 @@
 
 import {MdLocationPin} from 'react-icons/md'
 import {BiPhoneCall} from 'react-icons/bi'
-import Rating from './Rating';
+import Rating from './Star';
 export default function PlaceDetails({ data }) {
     const { awards } = data;
     // console.log(data.cuisine ? data.cuisine.length !== 0 && data.cuisine !== undefined )

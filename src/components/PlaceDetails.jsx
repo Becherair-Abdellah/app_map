@@ -1,7 +1,7 @@
 
-import {MdLocationPin} from 'react-icons/md'
-import {BiPhoneCall} from 'react-icons/bi'
-import Rating from './Star';
+import { MdLocationPin } from 'react-icons/md'
+import { BiPhoneCall } from 'react-icons/bi'
+import Star from './Star';
 export default function PlaceDetails({ data }) {
     const { awards } = data;
     // console.log(data.cuisine ? data.cuisine.length !== 0 && data.cuisine !== undefined )
@@ -15,7 +15,7 @@ export default function PlaceDetails({ data }) {
                 <h1 className='text-gray-800 text-xl font-semibold mb-2' >{data?.name ? data.name : 'UNkowne'}</h1>
                 <div className='rating' >
                     <span>
-                      <Rating data={5} />
+                        {data.rating?<Star numstar={Number(data.rating)} />:''}
                     </span>
                     <span>out of {data.num_reviews}</span>
                 </div>
@@ -37,25 +37,25 @@ export default function PlaceDetails({ data }) {
                     })}
                 </div> : ''}
                 {/* tags */}
-                {data?.cuisine?<div className="flex flex-wrap gap-2 mb-4 items-center" >
-                   {data?.cuisine?.map(({name},i)=>( 
-                    <span key={i} className='px-2 py-1 text-white bg-gray-400 rounded-2xl' >{name}</span>
-                   ))}
-                </div>:''}
+                {data?.cuisine ? <div className="flex flex-wrap gap-2 mb-4 items-center" >
+                    {data?.cuisine?.map(({ name }, i) => (
+                        <span key={i} className='px-2 py-1 text-white bg-gray-400 rounded-2xl' >{name}</span>
+                    ))}
+                </div> : ''}
                 {/* address  */}
                 {data?.address && (<div className='flex justify-between text-gray-700 mb-3 items-center'>
-                    <span><MdLocationPin size={25}/></span>
+                    <span><MdLocationPin size={25} /></span>
                     <span>{data.address}</span>
                 </div>)}
                 {/* phone  */}
                 {data?.phone && (<div className='flex justify-between text-gray-700 mb-3 items-center'>
-                    <span><BiPhoneCall/></span>
+                    <span><BiPhoneCall /></span>
                     <span>{data.phone}</span>
                 </div>)}
                 {/* buttons */}
                 <div className='flex gap-2 text-gray-500' >
-                    <button onClick={()=>window.open(data.web_url,'_blank')}>Trip Advisor</button>
-                    <button onClick={()=>window.open(data.website,'_blank')}>Website </button>
+                    <button onClick={() => window.open(data.web_url, '_blank')}>Trip Advisor</button>
+                    <button onClick={() => window.open(data.website, '_blank')}>Website </button>
                 </div>
             </div>
         </div>

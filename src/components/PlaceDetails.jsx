@@ -2,10 +2,18 @@
 import { MdLocationPin } from 'react-icons/md'
 import { BiPhoneCall } from 'react-icons/bi'
 import Star from './Star';
+import { useMemo, useState } from 'react';
 export default function PlaceDetails({ data }) {
     const { awards } = data;
     // console.log(data.cuisine ? data.cuisine.length !== 0 && data.cuisine !== undefined )
     // console.log(data.cuisine)
+    // using useMemo Hook to improve the performance 
+    const [count,setCount] = useState(0);
+    const starMemo = useMemo(() => (
+        <span>
+            {data.rating ? <Star numstar={Number(data.rating)} /> : ''}
+        </span>
+    ), [])
     return (
         <div className='mb-5 mt-5'>
             <div>
@@ -14,9 +22,7 @@ export default function PlaceDetails({ data }) {
             <div className='p-3 bg-white shadow-xl'>
                 <h1 className='text-gray-800 text-xl font-semibold mb-2' >{data?.name ? data.name : 'UNkowne'}</h1>
                 <div className='rating' >
-                    <span>
-                        {data.rating?<Star numstar={Number(data.rating)} />:''}
-                    </span>
+                    {starMemo}
                     <span>out of {data.num_reviews}</span>
                 </div>
                 <div className='flex justify-between text-gray-700 mb-2'>
@@ -58,6 +64,11 @@ export default function PlaceDetails({ data }) {
                     <button onClick={() => window.open(data.website, '_blank')}>Website </button>
                 </div>
             </div>
+            {count}
+            <button onClick={()=>setCount(count+1)}>Click Here</button>
         </div>
+
+
+
     )
 }

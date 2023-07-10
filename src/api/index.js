@@ -19,9 +19,9 @@ const options = {
     'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
   }
 };
-export const GetData =async()=>{
+export const GetData =async(type)=>{
     try {
-        const {data: {data}} = await axios.get('https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary',options);
+        const {data: {data}} = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`,options);
         console.log(data)
         return data;
     } catch (error) {

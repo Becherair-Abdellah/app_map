@@ -3,15 +3,14 @@ import { MdLocationPin } from 'react-icons/md'
 import { BiPhoneCall } from 'react-icons/bi'
 import Star from './Star';
 import { useMemo, useState } from 'react';
-export default function PlaceDetails({ data }) {
+export default function PlaceDetails({ data}) {
     const { awards } = data;
     // console.log(data.cuisine ? data.cuisine.length !== 0 && data.cuisine !== undefined )
     // console.log(data.cuisine)
     // using useMemo Hook to improve the performance 
-    const [count,setCount] = useState(0);
     const starMemo = useMemo(() => (
         <span>
-            {data.rating ? <Star numstar={Number(data.rating)} /> : ''}
+            {data.rating ? <Star numstar={Math.floor(Number(data.rating))} /> : ''}
         </span>
     ), [])
     return (
@@ -64,8 +63,6 @@ export default function PlaceDetails({ data }) {
                     <button onClick={() => window.open(data.website, '_blank')}>Website </button>
                 </div>
             </div>
-            {count}
-            <button onClick={()=>setCount(count+1)}>Click Here</button>
         </div>
 
 
